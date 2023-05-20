@@ -45,7 +45,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
             onClick={() => {
               setRecording(true);
               setTimer(0);
-              setIsPaused(!isPaused)
+              setIsPaused(!isPaused);
             }}
           >
             Start Next
@@ -70,6 +70,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
                 : "bg-gray-200"
             }`}
             disabled={!isModeChosen}
+            onClick={() => setTimer(0)}
           >
             Listen to Previous
           </button>
@@ -81,6 +82,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
                 : "bg-gray-200"
             }`}
             disabled={!isModeChosen}
+            onClick={() => setTimer(0)}
           >
             End Session
           </button>
