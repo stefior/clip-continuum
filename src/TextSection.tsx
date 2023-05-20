@@ -7,19 +7,20 @@ interface TextSectionProps {
 function TextSection({ isModeChosen }: TextSectionProps) {
   const [recording, setRecording] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
-    if (recording) {
+    if (recording && !isPaused) {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
-      }, 1000);
+      }, 1);
     } else if (!recording && timer !== 0) {
       clearInterval(interval!);
     }
     return () => clearInterval(interval!);
-  }, [recording, timer]);
+  }, [recording, timer, isPaused]);
 
   return (
     <div className={`max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative`}>
@@ -44,6 +45,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
             onClick={() => {
               setRecording(true);
               setTimer(0);
+              setIsPaused(!isPaused)
             }}
           >
             Start Next
@@ -56,8 +58,9 @@ function TextSection({ isModeChosen }: TextSectionProps) {
                 : "bg-gray-200"
             }`}
             disabled={!isModeChosen}
+            onClick={() => setIsPaused(!isPaused)}
           >
-            Pause
+            Pause / Resume
           </button>
           <button
             className={`py-2 px-4
@@ -81,13 +84,15 @@ function TextSection({ isModeChosen }: TextSectionProps) {
           >
             End Session
           </button>
-          <div className="absolute top-2 right-2 p-4 flex items-center space-x-2">
-            {recording && (
+          <div className="absolute top-2 right-3 p-4 flex items-center space-x-2">
+            {recording && !isPaused && (
               <div className="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75"></div>
             )}
             <div className="text-white">
-              {Math.floor(timer / 60)}:
-              {timer % 60 < 10 ? `0${timer % 60}` : timer % 60}
+              {Math.floor(timer / 60000)}:
+              {Math.floor((timer / 1000) % 60) < 10
+                ? `0${Math.floor((timer / 1000) % 60)}`
+                : Math.floor((timer / 1000) % 60)}
             </div>
           </div>
         </div>
