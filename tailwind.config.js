@@ -4,6 +4,9 @@ module.exports = {
   darkMode: 'class',
   content: [],
   theme: {
+    fontFamily: {
+      'title': ['Montserrat', 'Helvetica', 'Arial', 'sans-serif']
+    },
     extend: {},
   },
   plugins: [],
