@@ -6,17 +6,17 @@ function TextSection({ isModeChosen }: TextSectionProps) {
   return (
     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <div
-        className={`flex flex-col items-center justify-center 
-        ${isModeChosen ? "bg-gray-800" : "bg-gray-200"}`}
+        className={`flex flex-col items-center justify-center gap-1
+        ${isModeChosen ? "bg-white" : "bg-gray-200"}`}
       >
-        <div
-          className={`w-full rounded-t-lg p-2 
-          ${isModeChosen ? "bg-gray-900 text-white" : "bg-gray-200"}`}
+        <div id="reading-area"
+          className={`w-full rounded-t-lg p-6
+          ${isModeChosen ? "bg-gray-700 text-white" : "bg-gray-200"}`}
         >
           ...
         </div>
-        <div
-          className={`flex gap-2 mt-2
+        <div id="recording-buttons"
+          className={`flex gap-1
           ${isModeChosen ? "" : "bg-gray-200"}`}
         >
           <button
