@@ -51,6 +51,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
               setTimer(0);
               setIsPaused(false);
             }}
+            disabled={!isModeChosen}
           >
             Start Next
           </button>
