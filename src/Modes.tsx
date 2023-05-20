@@ -37,7 +37,7 @@ function Modes({ isModeChosen, setModeChosen }: ModesProps) {
   const getButtonClasses = (mode: string) => {
     let classes = "text-white font-bold py-2 px-4 rounded ";
     classes +=
-      selectedMode === mode ? "bg-red-500 " : "bg-blue-500 hover:bg-blue-700 ";
+      selectedMode === mode ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600 ";
     return classes;
   };
 
@@ -78,7 +78,7 @@ function Modes({ isModeChosen, setModeChosen }: ModesProps) {
       </div>
       <div className="mt-5 flex gap-2 items-center justify-center">
         <p className="text-xl font-medium text-gray-900">Download Location:</p>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
           Browser Default
         </button>
       </div>

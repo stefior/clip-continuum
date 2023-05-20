@@ -24,28 +24,28 @@ function TextSection({ isModeChosen }: TextSectionProps) {
         >
           <button 
             className={`rounded-bl-lg py-2 px-4
-            ${isModeChosen ? 'bg-red-500 hover:bg-red-700 text-white font-bold' : 'bg-gray-200'}`}
+            ${isModeChosen ? 'bg-red-500 hover:bg-red-600 text-white font-bold' : 'bg-gray-200'}`}
             disabled={!isModeChosen}
           >
             Start Next
           </button>
           <button 
             className={`py-2 px-4
-            ${isModeChosen ? 'bg-red-500 hover:bg-red-700 text-white font-bold' : 'bg-gray-200'}`}
+            ${isModeChosen ? 'bg-red-500 hover:bg-red-600 text-white font-bold' : 'bg-gray-200'}`}
             disabled={!isModeChosen}
           >
             Pause
           </button>
           <button 
             className={`py-2 px-4
-            ${isModeChosen ? 'bg-red-500 hover:bg-red-700 text-white font-bold' : 'bg-gray-200'}`}
+            ${isModeChosen ? 'bg-red-500 hover:bg-red-600 text-white font-bold' : 'bg-gray-200'}`}
             disabled={!isModeChosen}
           >
             Listen to Previous
           </button>
           <button 
             className={`rounded-br-lg py-2 px-4
-            ${isModeChosen ? 'bg-red-500 hover:bg-red-700 text-white font-bold' : 'bg-gray-200'}`}
+            ${isModeChosen ? 'bg-red-500 hover:bg-red-600 text-white font-bold' : 'bg-gray-200'}`}
             disabled={!isModeChosen}
           >
             End Session
