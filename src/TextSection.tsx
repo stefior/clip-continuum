@@ -41,7 +41,11 @@ function TextSection({ isModeChosen }: TextSectionProps) {
           ${isModeChosen ? "" : "bg-gray-200"}`}
         >
           <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-bl"
+            className={`${
+              isModeChosen
+                ? "bg-red-500 hover:bg-red-600 text-white font-bold"
+                : "bg-gray-200"
+            } py-2 px-4 rounded-bl`}
             onClick={() => {
               setRecording(true);
               setTimer(0);
@@ -85,7 +89,10 @@ function TextSection({ isModeChosen }: TextSectionProps) {
                 : "bg-gray-200"
             }`}
             disabled={!isModeChosen}
-            onClick={() => {setTimer(0); setRecording(false);}}
+            onClick={() => {
+              setTimer(0);
+              setRecording(false);
+            }}
           >
             End Session
           </button>
