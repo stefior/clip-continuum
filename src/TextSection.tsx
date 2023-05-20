@@ -49,7 +49,7 @@ function TextSection({ isModeChosen }: TextSectionProps) {
             onClick={() => {
               setRecording(true);
               setTimer(0);
-              setIsPaused(!isPaused);
+              setIsPaused(false);
             }}
           >
             Start Next
