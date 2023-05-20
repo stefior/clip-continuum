@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <nav id="navbar" className="flex items-center">
       <img src="./logo.png" alt="Code Continuum logo" className="h-12" />
@@ -13,3 +13,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar
