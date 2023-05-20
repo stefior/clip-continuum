@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState, ChangeEvent } from "react";
 
-function Modes() {
+interface ModesProps {
+  isModeChosen: boolean;
+  setModeChosen: (chosen: boolean) => void;
+}
+
+function Modes({ isModeChosen, setModeChosen }: ModesProps) {
   const navigate = useNavigate();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -25,6 +30,7 @@ function Modes() {
   const handleModeSelect = (mode: string) => {
     if (mode !== selectedMode) {
       setSelectedMode(mode);
+      setModeChosen(true)
     }
   };
 
