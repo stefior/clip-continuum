@@ -4,7 +4,11 @@ const Navbar = () => {
   return (
     <nav id="navbar" className="flex items-center">
       <a href="/" className="flex items-center">
-        <img src="./logo.png" alt="Code Continuum logo" className="h-12 select-none" />
+        <img
+          src="./logo.png"
+          alt="Code Continuum logo"
+          className="h-12 select-none"
+        />
         <h1 className="text-2xl font-title select-none">Code Continuum</h1>
       </a>
       <div className="ml-auto p-4 font-title text-sm">

@@ -1,18 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 
-interface ModesProps {
-  isModeChosen: boolean;
-  setModeChosen: (chosen: boolean) => void;
-}
-
-function Modes({ isModeChosen, setModeChosen }: ModesProps) {
+function Modes({ isModeChosen, setModeChosen }) {
   const navigate = useNavigate();
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [selectedMode, setSelectedMode] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedMode, setSelectedMode] = useState(null);
 
-  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (event) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
 
@@ -27,21 +22,21 @@ function Modes({ isModeChosen, setModeChosen }: ModesProps) {
     setSelectedMode("mode2");
   };
 
-  const handleModeSelect = (mode: string) => {
+  const handleModeSelect = (mode) => {
     if (mode !== selectedMode) {
       setSelectedMode(mode);
       setModeChosen(true);
     }
   };
 
-  const getButtonClasses = (mode: string) => {
+  function getButtonClasses(mode) {
     let classes = "text-white font-bold py-2 px-4 rounded ";
     classes +=
       selectedMode === mode
         ? "bg-red-500 hover:bg-red-600"
         : "bg-blue-500 hover:bg-blue-600 ";
     return classes;
-  };
+  }
 
   return (
     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">

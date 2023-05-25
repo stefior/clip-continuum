@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
 
-interface TextSectionProps {
-  isModeChosen: boolean;
-}
-
-function TextSection({ isModeChosen }: TextSectionProps) {
+function TextSection({ isModeChosen }) {
   const [recording, setRecording] = useState(false);
   const [timer, setTimer] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval = null;
 
     if (recording && !isPaused) {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
       }, 1);
     } else if (!recording && timer !== 0) {
-      clearInterval(interval!);
+      clearInterval(interval);
     }
-    return () => clearInterval(interval!);
+    return () => clearInterval(interval);
   }, [recording, timer, isPaused]);
 
   return (
