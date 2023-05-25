@@ -6,10 +6,10 @@ const Navbar = () => {
       <a href="/" className="flex items-center">
         <img
           src="./logo.png"
-          alt="Code Continuum logo"
+          alt="Clip Continuum logo"
           className="h-12 select-none"
         />
-        <h1 className="text-2xl font-title select-none">Code Continuum</h1>
+        <h1 className="text-2xl font-title select-none">Clip Continuum</h1>
       </a>
       <div className="ml-auto p-4 font-title text-sm">
         <Link to="/tutorial" className="ml-4 hover:underline">
