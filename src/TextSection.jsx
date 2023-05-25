@@ -93,7 +93,7 @@ function TextSection({ isModeChosen }) {
           >
             End Session
           </button>
-          <div className="absolute top-2 right-2 p-4 flex items-center space-x-2">
+          <div className="absolute top-2 right-6 p-4 flex items-center space-x-2">
             {recording && !isPaused && (
               <div className="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75"></div>
             )}
