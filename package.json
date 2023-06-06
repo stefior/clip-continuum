@@ -1,5 +1,15 @@
 {
-  "dependencies": {
-    "tailwindcss": "^3.3.2"
+  "name": "clip-continuum",
+  "description": "A tool for making back to back recordings easily without before/after noise or button sounds",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss build styles.css -o output.css"
+  },
+  "keywords": [],
+  "author": "Stefior",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.0.7"
   }
 }
