@@ -63,12 +63,12 @@
 
   <div id="text-section" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative">
     <div class="flex flex-col items-center justify-center gap-1 bg-white">
-      <div id="reading-area" class="w-full rounded-t-lg p-6 bg-gray-700 text-white">
-        ...
-      </div>
-      <div class="absolute top-2 right-6 p-4 flex items-center space-x-2">
-        <div class="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75" hidden id="recording-indicator"></div>
-        <div class="text-white" id="timer"></div>
+      <div id="reading-area" class="relative w-full rounded-t-lg bg-gray-700 text-white">
+        <p class="p-6">...</p>
+        <div class="absolute top-0 right-1 flex items-center space-x-2">
+          <div class="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75" hidden id="recording-indicator"></div>
+          <div class="text-white" id="timer"></div>
+        </div>
       </div>
       <div id="recording-buttons" class="flex gap-1">
         <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-bl" id="start-button"
