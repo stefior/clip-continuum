@@ -36,8 +36,8 @@ recordingModeButton.addEventListener(
 let timer = 0;
 let timerInterval;
 const timerNode = document.querySelector("#timer");
+const recordingIndicator = document.querySelector("#recording-indicator");
 playButton.addEventListener("click", () => {
-
   if (!userAudio) {
     console.error("MediaRecorder not initialized");
     return;
@@ -54,11 +54,13 @@ playButton.addEventListener("click", () => {
         seconds < 10 ? "0" + seconds : seconds
       }`;
     }, 10);
+    recordingIndicator.removeAttribute("hidden");
   } else {
     userAudio.stop();
     playButton.dataset.playing = "false";
     timer = 0;
     clearInterval(timerInterval);
+    recordingIndicator.setAttribute("hidden", "");
 
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: false })

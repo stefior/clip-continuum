@@ -19,7 +19,6 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-  <!-- nav bar -->
   <nav id="navbar" class="flex items-center">
     <a href="/" class="flex items-center">
       <img src="./images/logo.png" alt="Clip Continuum logo" class="h-12 select-none" />
@@ -38,8 +37,7 @@
     </div>
   </nav>
 
-  <!-- modes section -->
-  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+  <div id="modes section" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
     <h1 class="text-3xl font-bold text-gray-900 text-center">Choose your mode</h1>
     <div class="mt-5 grid grid-cols-3 gap-10">
       <button class="text-white font-bold py-2 px-4 rounded bg-red-500 hover:bg-red-600 mode-button" id="mode-1">
@@ -63,11 +61,14 @@
     </div>
   </div>
 
-  <!-- text section -->
-  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative">
+  <div id="text-section" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative">
     <div class="flex flex-col items-center justify-center gap-1 bg-white">
       <div id="reading-area" class="w-full rounded-t-lg p-6 bg-gray-700 text-white">
         ...
+      </div>
+      <div class="absolute top-2 right-6 p-4 flex items-center space-x-2">
+        <div class="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75" hidden id="recording-indicator"></div>
+        <div class="text-white" id="timer"></div>
       </div>
       <div id="recording-buttons" class="flex gap-1">
         <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-bl" id="start-button"
@@ -83,18 +84,11 @@
         <button class="rounded-br-lg py-2 px-4 bg-red-500 hover:bg-red-600 text-white font-bold" id="end-button">
           End Session
         </button>
-        <div class="absolute top-2 right-6 p-4 flex items-center space-x-2">
-          <!-- <div className="animate-ping w-2 h-2 rounded-full bg-red-600 opacity-75"></div> -->
-          <div class="text-white" id="timer">
-            <!-- timer goes here -->
-          </div>
-        </div>
       </div>
     </div>
-    <div id="recordings-list"></div>
+    <div id="recordings-list"></div> <!-- temporary, just to see it's working -->
   </div>
 
-  <!-- footer -->
   <footer class="mt-auto text-center">
     &#169; Stephen Fiorenza
     <script>new Date().getFullYear()</script>
