@@ -6,6 +6,7 @@ let userAudio;
 const recordingModeButton = document.querySelector(".mode-button"); //temporarily only the first one to show it works
 const playButton = document.querySelector("#start-button");
 const recordingsList = document.querySelector("#recordings-list");
+
 recordingModeButton.addEventListener(
   "click",
   () => {
@@ -32,7 +33,11 @@ recordingModeButton.addEventListener(
   { once: true }
 );
 
+let timer = 0;
+let timerInterval;
+const timerNode = document.querySelector("#timer");
 playButton.addEventListener("click", () => {
+
   if (!userAudio) {
     console.error("MediaRecorder not initialized");
     return;
@@ -41,9 +46,19 @@ playButton.addEventListener("click", () => {
   if (playButton.dataset.playing === "false") {
     userAudio.start();
     playButton.dataset.playing = "true";
+    timerInterval = setInterval(() => {
+      timer += 1;
+      let minutes = Math.floor(timer / 6000);
+      let seconds = Math.floor((timer % 6000) / 100);
+      timerNode.textContent = `${minutes}:${
+        seconds < 10 ? "0" + seconds : seconds
+      }`;
+    }, 10);
   } else {
     userAudio.stop();
     playButton.dataset.playing = "false";
+    timer = 0;
+    clearInterval(timerInterval);
 
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: false })
@@ -74,6 +89,6 @@ modeButtons.forEach((modeButton) =>
       modeButton.classList.toggle("hover:bg-blue-600");
     }
     selectedMode = modeButton.id;
-    modeButtons.forEach(mode => mode.setAttribute("disabled", ""))
+    modeButtons.forEach((mode) => mode.setAttribute("disabled", ""));
   })
 );
