@@ -5,11 +5,13 @@ let audioContext;
 let userAudio;
 const recordingModeButton = document.querySelector(".mode-button"); //temporarily only the first one to show it works
 const playButton = document.querySelector("#start-button");
+const pauseResumeButton = document.querySelector("#pause-resume-button");
 const recordingsList = document.querySelector("#recordings-list");
 
 recordingModeButton.addEventListener(
   "click",
   () => {
+    // necessary to initialize user audio after a user interaction due to how the browser handles autoplay stuff
     audioContext = new AudioContext();
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: false })
@@ -77,6 +79,28 @@ playButton.addEventListener("click", () => {
           recordingsList.appendChild(audio);
         });
       });
+  }
+});
+
+pauseResumeButton.addEventListener("click", () => {
+  if (playButton.dataset.playing === "false") return;
+  if (userAudio.state === "recording") {
+    userAudio.pause();
+    playButton.dataset.playing === "false";
+    clearInterval(timerInterval);
+    recordingIndicator.setAttribute("hidden", "");
+  } else if (userAudio.state === "paused") {
+    userAudio.resume();
+    playButton.dataset.playing = "true";
+    timerInterval = setInterval(() => {
+      timer += 1;
+      let minutes = Math.floor(timer / 6000);
+      let seconds = Math.floor((timer % 6000) / 100);
+      timerNode.textContent = `${minutes}:${
+        seconds < 10 ? "0" + seconds : seconds
+      }`;
+    }, 10);
+    recordingIndicator.removeAttribute("hidden");
   }
 });
 
