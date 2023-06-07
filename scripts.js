@@ -106,7 +106,7 @@ pauseResumeButton.addEventListener("click", () => {
 });
 
 endButton.addEventListener("click", () => {
-  if (userAudio.state === "recording") {
+  if (userAudio.state === "recording" || userAudio.state === "paused") {
     userAudio.stop();
     playButton.dataset.playing = "false";
     timer = 0;
