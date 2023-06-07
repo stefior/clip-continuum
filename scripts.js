@@ -84,6 +84,11 @@ playButton.addEventListener("click", () => {
 });
 
 pauseResumeButton.addEventListener("click", () => {
+  if (!userAudio) {
+    console.error("MediaRecorder not initialized");
+    return;
+  }
+  
   if (userAudio.state === "recording") {
     userAudio.pause();
     playButton.dataset.playing === "false";
@@ -105,6 +110,11 @@ pauseResumeButton.addEventListener("click", () => {
 });
 
 endButton.addEventListener("click", () => {
+  if (!userAudio) {
+    console.error("MediaRecorder not initialized");
+    return;
+  }
+  
   if (userAudio.state === "recording" || userAudio.state === "paused") {
     userAudio.stop();
     playButton.dataset.playing = "false";
