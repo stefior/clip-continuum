@@ -84,7 +84,6 @@ playButton.addEventListener("click", () => {
 });
 
 pauseResumeButton.addEventListener("click", () => {
-  if (playButton.dataset.playing === "false") return;
   if (userAudio.state === "recording") {
     userAudio.pause();
     playButton.dataset.playing === "false";
