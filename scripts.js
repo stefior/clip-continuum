@@ -15,7 +15,7 @@ recordingModeButton.addEventListener(
     // necessary to initialize user audio after a user interaction due to how the browser handles autoplay stuff
     audioContext = new AudioContext();
     navigator.mediaDevices
-      .getUserMedia({ audio: true, video: false })
+      .getUserMedia({ audio: true })
       .then((stream) => {
         userAudio = new MediaRecorder(stream);
         userAudio.addEventListener("dataavailable", (event) => {
@@ -65,21 +65,19 @@ playButton.addEventListener("click", () => {
     clearInterval(timerInterval);
     recordingIndicator.setAttribute("hidden", "");
 
-    navigator.mediaDevices
-      .getUserMedia({ audio: true, video: false })
-      .then((stream) => {
-        userAudio = new MediaRecorder(stream);
-        userAudio.addEventListener("dataavailable", (event) => {
-          const audio = document.createElement("audio");
-          audio.controls = true;
-          const blob = new Blob([event.data], {
-            type: "audio/ogg; codecs=opus",
-          });
-          const audioURL = window.URL.createObjectURL(blob);
-          audio.src = audioURL;
-          recordingsList.appendChild(audio);
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+      userAudio = new MediaRecorder(stream);
+      userAudio.addEventListener("dataavailable", (event) => {
+        const audio = document.createElement("audio");
+        audio.controls = true;
+        const blob = new Blob([event.data], {
+          type: "audio/ogg; codecs=opus",
         });
+        const audioURL = window.URL.createObjectURL(blob);
+        audio.src = audioURL;
+        recordingsList.appendChild(audio);
       });
+    });
   }
 });
 
@@ -88,7 +86,7 @@ pauseResumeButton.addEventListener("click", () => {
     console.error("MediaRecorder not initialized");
     return;
   }
-  
+
   if (userAudio.state === "recording") {
     userAudio.pause();
     playButton.dataset.playing === "false";
@@ -114,7 +112,7 @@ endButton.addEventListener("click", () => {
     console.error("MediaRecorder not initialized");
     return;
   }
-  
+
   if (userAudio.state === "recording" || userAudio.state === "paused") {
     userAudio.stop();
     playButton.dataset.playing = "false";
