@@ -6,6 +6,7 @@ let userAudio;
 const recordingModeButton = document.querySelector(".mode-button"); //temporarily only the first one to show it works
 const playButton = document.querySelector("#start-button");
 const pauseResumeButton = document.querySelector("#pause-resume-button");
+const endButton = document.querySelector("#end-button");
 const recordingsList = document.querySelector("#recordings-list");
 
 recordingModeButton.addEventListener(
@@ -101,6 +102,16 @@ pauseResumeButton.addEventListener("click", () => {
       }`;
     }, 10);
     recordingIndicator.removeAttribute("hidden");
+  }
+});
+
+endButton.addEventListener("click", () => {
+  if (userAudio.state === "recording") {
+    userAudio.stop();
+    playButton.dataset.playing = "false";
+    timer = 0;
+    clearInterval(timerInterval);
+    recordingIndicator.setAttribute("hidden", "");
   }
 });
 
