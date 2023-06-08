@@ -46,7 +46,7 @@ playButton.addEventListener("click", () => {
     return;
   }
 
-  if (playButton.dataset.playing === "false") {
+  function startRecording() {
     userAudio.start();
     playButton.dataset.playing = "true";
     timerInterval = setInterval(() => {
@@ -58,6 +58,10 @@ playButton.addEventListener("click", () => {
       }`;
     }, 10);
     recordingIndicator.removeAttribute("hidden");
+  }
+
+  if (playButton.dataset.playing === "false") {
+    startRecording();
   } else {
     userAudio.stop();
     playButton.dataset.playing = "false";
@@ -67,6 +71,7 @@ playButton.addEventListener("click", () => {
 
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       userAudio = new MediaRecorder(stream);
+      startRecording();
       userAudio.addEventListener("dataavailable", (event) => {
         const audio = document.createElement("audio");
         audio.controls = true;
@@ -78,6 +83,7 @@ playButton.addEventListener("click", () => {
         recordingsList.appendChild(audio);
       });
     });
+
   }
 });
 
