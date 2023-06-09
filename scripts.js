@@ -6,6 +6,7 @@ let userAudio;
 const recordingModeButtons = document.querySelectorAll(".mode-button");
 const playButton = document.querySelector("#start-button");
 const pauseResumeButton = document.querySelector("#pause-resume-button");
+const replayPreviousButton = document.querySelector("#listen-button");
 const endButton = document.querySelector("#end-button");
 const recordingsList = document.querySelector("#recordings-list");
 
@@ -27,6 +28,7 @@ recordingModeButtons.forEach((recordingModeButton) => {
             });
             const audioURL = window.URL.createObjectURL(blob);
             audio.src = audioURL;
+            previousRecording = audio;
             recordingsList.appendChild(audio);
           });
         })
@@ -40,6 +42,7 @@ recordingModeButtons.forEach((recordingModeButton) => {
 
 let timer = 0;
 let timerInterval;
+let previousRecording = null;
 const timerNode = document.querySelector("#timer");
 const recordingIndicator = document.querySelector("#recording-indicator");
 playButton.addEventListener("click", () => {
@@ -82,6 +85,7 @@ playButton.addEventListener("click", () => {
         });
         const audioURL = window.URL.createObjectURL(blob);
         audio.src = audioURL;
+        previousRecording = audio;
         recordingsList.appendChild(audio);
       });
     });
@@ -114,6 +118,18 @@ pauseResumeButton.addEventListener("click", () => {
   }
 });
 
+replayPreviousButton.addEventListener("click", () => {
+  if (!userAudio) {
+    console.error("MediaRecorder not initialized");
+    return;
+  }
+  if (previousRecording.currentTime !== 0) {
+    previousRecording.pause();
+    previousRecording.currentTime = 0;
+  } else {
+    previousRecording.play();
+  }
+});
 endButton.addEventListener("click", () => {
   if (!userAudio) {
     console.error("MediaRecorder not initialized");
