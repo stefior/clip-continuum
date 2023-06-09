@@ -3,38 +3,40 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioContext;
 let userAudio;
-const recordingModeButton = document.querySelector(".mode-button"); //temporarily only the first one to show it works
+const recordingModeButtons = document.querySelectorAll(".mode-button");
 const playButton = document.querySelector("#start-button");
 const pauseResumeButton = document.querySelector("#pause-resume-button");
 const endButton = document.querySelector("#end-button");
 const recordingsList = document.querySelector("#recordings-list");
 
-recordingModeButton.addEventListener(
-  "click",
-  () => {
-    // necessary to initialize user audio after a user interaction due to how the browser handles autoplay stuff
-    audioContext = new AudioContext();
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream) => {
-        userAudio = new MediaRecorder(stream);
-        userAudio.addEventListener("dataavailable", (event) => {
-          const audio = document.createElement("audio");
-          audio.controls = true;
-          const blob = new Blob([event.data], {
-            type: "audio/ogg; codecs=opus",
+recordingModeButtons.forEach((recordingModeButton) => {
+  recordingModeButton.addEventListener(
+    "click",
+    () => {
+      // necessary to initialize user audio after a user interaction due to how the browser handles autoplay stuff
+      audioContext = new AudioContext();
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+          userAudio = new MediaRecorder(stream);
+          userAudio.addEventListener("dataavailable", (event) => {
+            const audio = document.createElement("audio");
+            audio.controls = true;
+            const blob = new Blob([event.data], {
+              type: "audio/ogg; codecs=opus",
+            });
+            const audioURL = window.URL.createObjectURL(blob);
+            audio.src = audioURL;
+            recordingsList.appendChild(audio);
           });
-          const audioURL = window.URL.createObjectURL(blob);
-          audio.src = audioURL;
-          recordingsList.appendChild(audio);
+        })
+        .catch((err) => {
+          console.error("Failed to get media", err);
         });
-      })
-      .catch((err) => {
-        console.error("Failed to get media", err);
-      });
-  },
-  { once: true }
-);
+    },
+    { once: true }
+  );
+});
 
 let timer = 0;
 let timerInterval;
@@ -83,7 +85,6 @@ playButton.addEventListener("click", () => {
         recordingsList.appendChild(audio);
       });
     });
-
   }
 });
 
