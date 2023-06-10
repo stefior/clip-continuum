@@ -137,6 +137,7 @@ endButton.addEventListener("click", () => {
   }
 
   if (userAudio.state === "recording" || userAudio.state === "paused") {
+    previousRecording.pause();
     userAudio.stop();
     playButton.dataset.playing = "false";
     timer = 0;
