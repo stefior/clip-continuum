@@ -130,6 +130,8 @@ replayPreviousButton.addEventListener("click", () => {
     previousRecording.play();
   }
 });
+
+
 endButton.addEventListener("click", () => {
   if (!userAudio) {
     console.error("MediaRecorder not initialized");
