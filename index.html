@@ -37,23 +37,21 @@
     </div>
   </nav>
 
-  <div id="modes section" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold text-gray-900 text-center">Choose your mode</h1>
+  <div id="modes section" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-gray-900">Choose your mode</h1>
     <div class="mt-5 grid grid-cols-3 gap-10">
       <button class="text-white font-bold py-2 px-4 rounded bg-red-500 hover:bg-red-600 mode-button" id="mode-1">
         Manual
       </button>
       <button class="text-white font-bold py-2 px-4 rounded bg-red-500 hover:bg-red-600 mode-button" id="mode-2">
         CSV
-        <!-- make the upload csv button show up below and separate if this is clicked so it isn't janky -->
-        <!-- <input type="file" id="upload-csv" accept=".csv" />
-        <label for="upload-csv">Upload CSV:</label> -->
       </button>
       <button class="text-white font-bold py-2 px-4 rounded bg-red-500 hover:bg-red-600 mode-button" id="mode-3">
         Sequential
       </button>
     </div>
-    <div class="mt-5 flex gap-2 items-center justify-center">
+    <input id="upload-csv" type="file" accept=".csv" class="ml-[55%] pt-2" hidden/>
+    <div class="mt-5 flex gap-2 items-center">
       <p class="text-xl font-medium text-gray-900">Download Location:</p>
       <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
         Browser Default

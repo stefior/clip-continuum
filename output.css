@@ -547,6 +547,10 @@ video {
   margin-left: 1rem;
 }
 
+.ml-\[55\%\] {
+  margin-left: 55%;
+}
+
 .ml-auto {
   margin-left: auto;
 }
@@ -713,6 +717,10 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
 }
 
 .text-center {

@@ -162,3 +162,8 @@ modeButtons.forEach((modeButton) =>
     modeButtons.forEach((mode) => mode.setAttribute("disabled", ""));
   })
 );
+
+modeButtons[1].addEventListener("click", () => {
+  const uploadButton = document.querySelector("#upload-csv");
+  uploadButton.removeAttribute("hidden");
+});
